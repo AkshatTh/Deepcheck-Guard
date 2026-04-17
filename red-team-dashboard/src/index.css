@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-void: #04060e;
+  --bg-panel: #080c18;
+  --bg-card: #0c1220;
+  --bg-hover: #101828;
+
+  --border: rgba(255, 255, 255, 0.07);
+  --border-accent: rgba(255, 50, 80, 0.3);
+
+  --red-primary: #ff2244;
+  --red-glow: rgba(255, 34, 68, 0.4);
+  --red-dim: rgba(255, 34, 68, 0.15);
+
+  --green-primary: #00ffaa;
+  --green-glow: rgba(0, 255, 170, 0.3);
+
+  --amber: #f0c040;
+  --amber-dim: rgba(240, 192, 64, 0.15);
+
+  --text-primary: #e8eef8;
+  --text-secondary: rgba(180, 200, 220, 0.6);
+  --text-dim: rgba(120, 140, 160, 0.4);
+
+  --font-mono: 'Share Tech Mono', 'Courier New', monospace;
+  --font-ui: 'Rajdhani', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg-void);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Scanline overlay for CRT effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+#root { min-height: 100vh; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-void); }
+::-webkit-scrollbar-thumb { background: rgba(255,34,68,0.3); border-radius: 2px; }
+
+/* Animations */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px var(--red-glow); }
+  50% { box-shadow: 0 0 24px var(--red-glow), 0 0 48px var(--red-dim); }
+}
+
+@keyframes text-flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.6; }
+  94% { opacity: 1; }
+  96% { opacity: 0.8; }
+  97% { opacity: 1; }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fade-up {
+  from { transform: translateY(8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-ui);
+}

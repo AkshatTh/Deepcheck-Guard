@@ -1,0 +1,5 @@
+.\backend-node\.env
+.\backend-node\.env.example
+cd .\backend-python\.env.example
+.env
+*.env

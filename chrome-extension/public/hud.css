@@ -1,0 +1,156 @@
+/* DeepCheck Guard — HUD Stylesheet */
+/* Injected into all pages via content_scripts */
+
+#deepcheck-hud-root {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2147483647;
+  font-family: 'Courier New', 'Consolas', monospace;
+  pointer-events: none;
+}
+
+.dg-hud {
+  background: rgba(8, 10, 18, 0.92);
+  border: 1px solid rgba(0, 255, 170, 0.25);
+  border-radius: 10px;
+  padding: 12px 16px;
+  min-width: 220px;
+  max-width: 280px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 24px rgba(0, 255, 170, 0.08), 0 4px 24px rgba(0,0,0,0.6);
+  transition: all 0.3s ease;
+}
+
+.dg-hud-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.dg-logo {
+  font-size: 11px;
+  font-weight: bold;
+  color: rgba(0, 255, 170, 0.9);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.dg-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #666;
+  transition: background 0.3s ease;
+}
+
+.dg-status-dot.scanning {
+  background: #f0c040;
+  animation: dg-pulse 1s ease-in-out infinite;
+}
+
+.dg-status-dot.safe {
+  background: #00ffaa;
+  box-shadow: 0 0 6px rgba(0, 255, 170, 0.8);
+}
+
+.dg-status-dot.threat {
+  background: #ff4455;
+  box-shadow: 0 0 6px rgba(255, 68, 85, 0.8);
+  animation: dg-pulse-red 0.8s ease-in-out infinite;
+}
+
+@keyframes dg-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes dg-pulse-red {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.2); }
+}
+
+.dg-hud-mode {
+  font-size: 10px;
+  color: rgba(160, 180, 200, 0.7);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.dg-hud-score {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.dg-score-value {
+  font-size: 28px;
+  font-weight: bold;
+  color: #f0f0f0;
+  line-height: 1;
+  transition: color 0.3s;
+}
+
+.dg-score-value.safe { color: #00ffaa; }
+.dg-score-value.threat { color: #ff4455; }
+
+.dg-score-label {
+  font-size: 10px;
+  color: rgba(160, 180, 200, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.dg-hud-details {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 8px;
+  margin-top: 4px;
+}
+
+.dg-bullet {
+  font-size: 9px;
+  color: rgba(255, 100, 120, 0.85);
+  margin-bottom: 3px;
+  line-height: 1.4;
+}
+
+/* Threat overlay on email content */
+.dg-threat-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 30, 50, 0.08);
+  border: 1px solid rgba(255, 60, 80, 0.4);
+  border-radius: 4px;
+  z-index: 9999;
+  pointer-events: all;
+}
+
+.dg-threat-banner {
+  position: sticky;
+  top: 0;
+  background: rgba(180, 20, 35, 0.9);
+  color: #fff;
+  font-size: 11px;
+  padding: 6px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Courier New', monospace;
+  backdrop-filter: blur(8px);
+}
+
+.dg-threat-banner button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.4);
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: inherit;
+}
